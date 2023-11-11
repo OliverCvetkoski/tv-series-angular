@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class getSeries {
   constructor(private http: HttpClient) {}
 
-  getData(): Observable<any> {
-    return this.http.get('https://api.tvmaze.com/shows');
+  getAllData(): Observable<any[]> {
+    return this.http.get<any[]>('https://api.tvmaze.com/shows');
   }
 }

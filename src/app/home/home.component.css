@@ -1,15 +1,128 @@
 .container {
-  border: 2px solid black;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 2em;
+  padding: 2em;
+  justify-items: center;
+}
+
+.card {
+  border-radius: 10px;
+  transition: transform 0.2s;
+  background-color: #8e8ffa;
+  width: 210px;
+}
+
+.card:hover {
+  transform: scale(1.13);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+h4 {
   padding: 0;
   margin: 0;
+}
+
+.seriesImg {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 80%;
+  border-radius: 10px;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-weight: 700;
+  padding-top: 10px;
 }
 
 .addToWatchlistDiv {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
 
 .btn {
-  background-color: green;
+  background-color: #5134e2;
+  padding: 8px 13px 8px 13px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px 3px #2601dd;
+}
+
+.loadMore {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loadDiv {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 30px 0;
+}
+
+.loadDiv button {
+  background-color: #7752fe;
+  font-weight: 700;
+  border: none;
+  padding: 15px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.loadDiv button:hover {
+  box-shadow: 0 0 10px 6px #5528f8;
+}
+
+.endOfResults {
+  display: flex;
+  justify-content: center;
+}
+
+.endOfResults p {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #7752fe;
+  color: white;
+  font-weight: 700;
+}
+
+.scrollTop {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  margin-right: 2em;
+}
+
+.scrollTop button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 515px) {
+  .card {
+    width: 300px;
+  }
 }

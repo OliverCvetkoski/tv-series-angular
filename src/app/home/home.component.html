@@ -1,10 +1,33 @@
 <div class="container">
   <div class="card" *ngFor="let series of seriesData">
-    <div class="seriesName"><h3></h3></div>
-    <div class="seriesImg"><img src="" alt="" /></div>
-    <div class="rating"></div>
+    <div class="title">
+      <h4>
+        {{ series.name | slice : 0 : 20
+        }}{{ series.name.length > 20 ? "..." : "" }}
+      </h4>
+    </div>
+    <div class="seriesImg">
+      <img [src]="series.image.medium" alt="{{ series.name }}" />
+    </div>
+    <div class="rating">
+      &#11088;
+      {{
+        series.rating && series.rating.average !== null
+          ? series.rating.average
+          : "No rating available"
+      }}
+    </div>
     <div class="addToWatchlistDiv">
       <button class="btn">Add to watchlist</button>
     </div>
   </div>
 </div>
+<div class="loadDiv" *ngIf="initialResults <= 240; else noResults">
+  <button (click)="loadData()">Load More</button>
+</div>
+<ng-template #noResults
+  ><div class="endOfResults">
+    <p>No more results to load</p>
+  </div></ng-template
+>
+<div class="scrollTop"><button (click)="scrollToTop()">TOP</button></div>
