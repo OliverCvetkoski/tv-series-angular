@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { getSeries } from '../services/getSeries.service';
 
 @Component({
@@ -7,17 +7,24 @@ import { getSeries } from '../services/getSeries.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  seriesData: any[] = [];
+  dataSubscription: Subscription;
+
   constructor(private seriesService: getSeries) {}
 
   ngOnInit(): void {
-    this.seriesService.getData().subscribe(
+    this.dataSubscription = this.seriesService.getData().subscribe(
       (data) => {
-        console.log('Data received:', data);
+        this.seriesData = data;
       },
       (error) => {
         console.error('Error fetching data:', error);
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
   }
 }
