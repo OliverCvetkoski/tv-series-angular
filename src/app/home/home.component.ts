@@ -1,5 +1,5 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
-import { getSeries } from '../services/getSeries.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SeriesService, Series } from '../services/SeriesService.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,13 +9,13 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   dataSubscription: Subscription;
-  seriesData = [];
+  seriesData: Series[] = [];
   batchSize = 20;
   currentPage = 1;
   loading = false;
   initialResults = 20;
 
-  constructor(private seriesService: getSeries) {}
+  constructor(private seriesService: SeriesService) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loadData(): void {
     this.loading = !this.loading;
     this.dataSubscription = this.seriesService.getAllData().subscribe(
-      (data) => {
+      (data: Series[]) => {
         const startIndex = (this.currentPage - 1) * this.batchSize;
         const endIndex = startIndex + this.batchSize;
         const newData = data.slice(startIndex, endIndex);

@@ -1,0 +1,54 @@
+<form (ngSubmit)="results()">
+  <label for="Search">Search Series</label>
+  <div class="inputDiv">
+    <input
+      id="Search"
+      type="text"
+      placeholder="Search Series"
+      [(ngModel)]="searchQuery"
+      name="searchQuery"
+    />
+    <button type="submit">Search</button>
+  </div>
+</form>
+<div class="loading" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="error" *ngIf="hasError">
+  <app-no-results-error></app-no-results-error>
+</div>
+<div class="container">
+  <div class="card" *ngFor="let series of searchResults">
+    <div class="title">
+      <h4>
+        {{ series.show.name | slice : 0 : 18
+        }}{{ series.show.name.length > 18 ? "..." : "" }}
+      </h4>
+    </div>
+    <div class="seriesImg">
+      <img
+        [src]="series.show.image.medium"
+        alt="{{ series.show.name }}"
+        *ngIf="series.show.image; else fillerImg"
+      />
+    </div>
+    <ng-template #fillerImg>
+      <div class="fillerImg">
+        No image found for
+        <br />
+        {{ series.show.name }}
+      </div>
+    </ng-template>
+    <div class="rating">
+      &#11088;
+      {{
+        series.show.rating && series.show.rating.average !== null
+          ? series.show.rating.average
+          : "No rating available"
+      }}
+    </div>
+    <div class="addToWatchlistDiv">
+      <button class="btn">Add to watchlist</button>
+    </div>
+  </div>
+</div>

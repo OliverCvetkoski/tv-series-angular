@@ -1,9 +1,13 @@
+<div class="loading" *ngIf="loading">
+  <app-loading-spinner></app-loading-spinner>
+  <p>Loading Results...</p>
+</div>
 <div class="container">
   <div class="card" *ngFor="let series of seriesData">
     <div class="title">
       <h4>
-        {{ series.name | slice : 0 : 20
-        }}{{ series.name.length > 20 ? "..." : "" }}
+        {{ series.name | slice : 0 : 18
+        }}{{ series.name.length > 18 ? "..." : "" }}
       </h4>
     </div>
     <div class="seriesImg">
@@ -25,9 +29,11 @@
 <div class="loadDiv" *ngIf="initialResults <= 240; else noResults">
   <button (click)="loadData()">Load More</button>
 </div>
-<ng-template #noResults
-  ><div class="endOfResults">
+<ng-template #noResults>
+  <div class="endOfResults">
     <p>No more results to load</p>
-  </div></ng-template
->
-<div class="scrollTop"><button (click)="scrollToTop()">TOP</button></div>
+  </div>
+</ng-template>
+<div class="scrollTop">
+  <button (click)="scrollToTop()">TOP</button>
+</div>
