@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="title">
+    <h4>
+      {{ series.name | slice : 0 : 18
+      }}{{ series.name.length > 18 ? "..." : "" }}
+    </h4>
+  </div>
+  <div class="image">
+    <img
+      [src]="series.image.medium"
+      alt="{{ series.name }}"
+      *ngIf="series.image; else fillerImg"
+    />
+  </div>
+  <ng-template #fillerImg>
+    <div class="fillerImg">
+      No image found for
+      <br />
+      {{ series.name }}
+    </div>
+  </ng-template>
+  <div class="rating">
+    <p>
+      &#11088;
+      {{
+        series.rating && series.rating.average !== null
+          ? series.rating.average
+          : "No rating available"
+      }}
+    </p>
+  </div>
+  <div class="btnDiv">
+    <button class="btn" (click)="onButtonClick()">{{ buttonText }}</button>
+  </div>
+</div>

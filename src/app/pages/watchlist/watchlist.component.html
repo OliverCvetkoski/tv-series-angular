@@ -1,0 +1,10 @@
+<div class="loading" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+  <p>Loading Results...</p>
+</div>
+<div class="container">
+  <app-series-component
+    *ngFor="let series of watchlistResults"
+    [series]="series"
+  ></app-series-component>
+</div>

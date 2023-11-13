@@ -1,0 +1,22 @@
+<div class="loading" *ngIf="loading">
+  <app-loading-spinner></app-loading-spinner>
+  <p>Loading Results...</p>
+</div>
+<div class="container">
+  <app-series-component
+    *ngFor="let series of seriesData"
+    [series]="series"
+    [isRemoveButton]="false"
+  ></app-series-component>
+</div>
+<div class="loadDiv" *ngIf="initialResults <= 240; else noResults">
+  <button (click)="loadData()">Load More</button>
+</div>
+<ng-template #noResults>
+  <div class="endOfResults">
+    <p>No more results to load</p>
+  </div>
+</ng-template>
+<div class="scrollTop">
+  <button (click)="scrollToTop()">TOP</button>
+</div>

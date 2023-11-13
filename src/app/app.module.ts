@@ -6,13 +6,14 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './routing/app-routing.module';
-import { BrowseSeriesComponent } from './browse-series/browse-series.component';
+import { BrowseSeriesComponent } from './pages/browse-series/browse-series.component';
 import { NoResultsErrorComponent } from './components/no-results-error/no-results-error.component';
-import { CommonModule } from '@angular/common';
+import { WatchlistComponent } from './pages/watchlist/watchlist.component';
+import { SeriesComponentComponent } from './components/series-component/series-component.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     BrowseSeriesComponent,
     NoResultsErrorComponent,
+    WatchlistComponent,
+    SeriesComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,6 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
-    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

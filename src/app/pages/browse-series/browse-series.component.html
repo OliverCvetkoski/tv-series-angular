@@ -1,0 +1,26 @@
+<form (ngSubmit)="showResults()">
+  <label for="Search">Search Series</label>
+  <div class="inputDiv">
+    <input
+      id="Search"
+      type="text"
+      placeholder="Search Series"
+      [(ngModel)]="searchQuery"
+      name="searchQuery"
+    />
+    <button type="submit">Search</button>
+  </div>
+</form>
+<div class="loading" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="error" *ngIf="hasError">
+  <app-no-results-error></app-no-results-error>
+</div>
+<div class="container">
+  <app-series-component
+    *ngFor="let series of searchResults"
+    [series]="series"
+    [isRemoveButton]="false"
+  ></app-series-component>
+</div>

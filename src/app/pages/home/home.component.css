@@ -19,69 +19,6 @@
   bottom: -4em;
 }
 
-.card {
-  border-radius: 10px;
-  transition: transform 0.2s;
-  background-color: #8e8ffa;
-  width: 210px;
-}
-
-.card:hover {
-  transform: scale(1.13);
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-}
-
-h4 {
-  padding: 0;
-  margin: 0;
-}
-
-.seriesImg {
-  display: flex;
-  justify-content: center;
-}
-
-img {
-  width: 80%;
-  border-radius: 10px;
-}
-
-.rating {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  font-weight: 700;
-  padding-top: 10px;
-}
-
-.addToWatchlistDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-
-.btn {
-  background-color: #5134e2;
-  padding: 8px 13px 8px 13px;
-  border: none;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  box-shadow: 0 0 10px 3px #2601dd;
-  color: white;
-}
-
 .loadMore {
   width: 100%;
   display: flex;
@@ -142,10 +79,4 @@ img {
 .scrollTop button:hover {
   box-shadow: 0 0 10px 6px #5527fa;
   color: black;
-}
-
-@media (max-width: 515px) {
-  .card {
-    width: 300px;
-  }
 }

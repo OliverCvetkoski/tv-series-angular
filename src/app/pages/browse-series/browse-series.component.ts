@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SeriesService, SearchSeries } from '../services/SeriesService.service';
+import { SeriesService, Series } from '../../services/SeriesService.service';
+import { WatchlistService } from 'src/app/services/WatchlistService.service';
 
 @Component({
   selector: 'app-browse-series',
@@ -7,21 +8,29 @@ import { SeriesService, SearchSeries } from '../services/SeriesService.service';
   styleUrls: ['./browse-series.component.css'],
 })
 export class BrowseSeriesComponent {
-  constructor(private seriesService: SeriesService) {}
+  constructor(
+    private seriesService: SeriesService,
+    private watchlistService: WatchlistService
+  ) {}
 
   searchQuery: string = '';
-  searchResults: SearchSeries[] = [];
+  searchResults: Series[] = [];
   isLoading = false;
   hasError = false;
 
-  results() {
+  showResults() {
     this.isLoading = !this.isLoading;
     this.seriesService
       .searchSeries(this.searchQuery)
-      .subscribe((data: SearchSeries[]) => {
+      .subscribe((data: Series[]) => {
         this.searchResults = data;
         this.isLoading = !this.isLoading;
         this.hasError = this.searchResults.length === 0;
+        console.log(this.searchResults);
       });
+  }
+
+  addToWatchlist(series): void {
+    this.watchlistService.addToWatchlist(series);
   }
 }

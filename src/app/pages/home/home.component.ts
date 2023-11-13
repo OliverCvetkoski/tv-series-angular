@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SeriesService, Series } from '../services/SeriesService.service';
+import { SeriesService, Series } from '../../services/SeriesService.service';
 import { Subscription } from 'rxjs';
+import { WatchlistService } from 'src/app/services/WatchlistService.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   loading = false;
   initialResults = 20;
 
-  constructor(private seriesService: SeriesService) {}
+  constructor(
+    private seriesService: SeriesService,
+    private watchlistService: WatchlistService
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -43,6 +47,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.loading = !this.loading;
       }
     );
+  }
+
+  addToWatchlist(series) {
+    this.watchlistService.addToWatchlist(series);
   }
 
   ngOnDestroy(): void {
