@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Series } from 'src/app/services/SeriesService.service';
+import { WatchlistService } from 'src/app/services/WatchlistService.service';
 
 @Component({
   selector: 'app-watchlist',
@@ -11,10 +12,11 @@ export class WatchlistComponent implements OnInit {
   watchlistResults: Series[] = [];
   isLoading = false;
 
-  constructor() {}
+  constructor(private watchlistService: WatchlistService) {}
 
   ngOnInit(): void {
     this.isLoading = !this.isLoading;
+
     const storedData = localStorage.getItem('watchlistResults');
     if (storedData) {
       this.watchlistResults = JSON.parse(storedData);

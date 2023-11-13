@@ -11,6 +11,8 @@ export class SeriesComponentComponent implements OnInit {
   @Input() series: Series;
   @Input() isRemoveButton = true;
   buttonText: string;
+  isButtonDisabled: boolean = false;
+
   constructor(private watchlistService: WatchlistService) {}
 
   getButtonText() {
@@ -21,9 +23,10 @@ export class SeriesComponentComponent implements OnInit {
 
   onButtonClick(): void {
     if (this.isRemoveButton) {
-      // Remove logic
+      this.watchlistService.removeFromWatchlist(this.series);
     } else {
       this.watchlistService.addToWatchlist(this.series);
+      this.isButtonDisabled = true;
     }
   }
 

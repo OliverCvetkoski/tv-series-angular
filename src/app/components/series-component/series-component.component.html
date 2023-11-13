@@ -30,6 +30,8 @@
     </p>
   </div>
   <div class="btnDiv">
-    <button class="btn" (click)="onButtonClick()">{{ buttonText }}</button>
+    <button class="btn" (click)="onButtonClick()" [disabled]="isButtonDisabled">
+      {{ buttonText }}
+    </button>
   </div>
 </div>
