@@ -18,3 +18,8 @@
   position: absolute;
   bottom: -4em;
 }
+
+.emptyWatchlist {
+  display: flex;
+  justify-content: center;
+}

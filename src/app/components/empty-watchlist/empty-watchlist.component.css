@@ -1,0 +1,54 @@
+.text {
+  background-color: blue;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 5px 10px 5px 10px;
+  margin-top: 2em;
+  background-image: linear-gradient(
+    to right,
+    #62c9f9 0%,
+    #1c2ef4 51%,
+    #14026d 100%
+  );
+  background-size: 200% 100%;
+  animation: gradient-loading 2s ease-in-out infinite;
+}
+
+@keyframes gradient-loading {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+p {
+  margin: 5px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+a {
+  padding: 10px;
+  background-color: #5134e2;
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+a:hover {
+  box-shadow: 0 0 10px 3px white;
+  color: white;
+}

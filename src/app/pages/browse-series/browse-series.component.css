@@ -28,19 +28,18 @@ form {
 }
 
 .inputDiv button {
-  background-color: #663ff7;
+  background-color: #5134e2;
   border-radius: 10px;
   border: none;
   padding: 0 15px 0 15px;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
-  color: white;
 }
 
 .inputDiv button:hover {
-  color: black;
-  box-shadow: 0 0 10px 6px #5528f8;
+  color: white;
+  box-shadow: 0 0 10px 6px white;
 }
 
 label {

@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,6 +17,9 @@ import { BrowseSeriesComponent } from './pages/browse-series/browse-series.compo
 import { NoResultsErrorComponent } from './components/no-results-error/no-results-error.component';
 import { WatchlistComponent } from './pages/watchlist/watchlist.component';
 import { SeriesComponentComponent } from './components/series-component/series-component.component';
+import { watchlistReducer } from './watchlist.reducer';
+import { EmptyWatchlistComponent } from './components/empty-watchlist/empty-watchlist.component';
+import { ShowDetailsComponent } from './components/show-details/show-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,8 @@ import { SeriesComponentComponent } from './components/series-component/series-c
     NoResultsErrorComponent,
     WatchlistComponent,
     SeriesComponentComponent,
+    EmptyWatchlistComponent,
+    ShowDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +41,9 @@ import { SeriesComponentComponent } from './components/series-component/series-c
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    StoreModule.forRoot({ watchlist: watchlistReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

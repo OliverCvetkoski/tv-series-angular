@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SeriesService, Series } from '../../services/SeriesService.service';
 import { Subscription } from 'rxjs';
-import { WatchlistService } from 'src/app/services/WatchlistService.service';
+
+import { SeriesService, Series } from '../../services/SeriesService.service';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loading = false;
   initialResults = 20;
 
-  constructor(
-    private seriesService: SeriesService,
-    private watchlistService: WatchlistService
-  ) {}
+  constructor(private seriesService: SeriesService) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -30,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadData(): void {
-    this.loading = !this.loading;
+    this.loading = true;
     this.dataSubscription = this.seriesService.getAllData().subscribe(
       (data: Series[]) => {
         const startIndex = (this.currentPage - 1) * this.batchSize;
@@ -40,17 +37,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.seriesData = this.seriesData.concat(newData);
         this.currentPage++;
         this.initialResults += 20;
-        this.loading = !this.loading;
+        this.loading = false;
       },
       (error) => {
         console.error('Error fetching data:', error);
-        this.loading = !this.loading;
+        this.loading = true;
       }
     );
-  }
-
-  addToWatchlist(series) {
-    this.watchlistService.addToWatchlist(series);
   }
 
   ngOnDestroy(): void {

@@ -7,6 +7,11 @@
   justify-items: center;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .card {
   border-radius: 10px;
   transition: transform 0.2s;
@@ -66,7 +71,7 @@ img {
 }
 
 .btn:hover {
-  box-shadow: 0 0 10px 3px #2601dd;
+  box-shadow: 0 0 10px 3px white;
   color: white;
 }
 

@@ -1,0 +1,137 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 95%;
+  border-radius: 10px;
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #a0a1d4;
+  margin-bottom: 2em;
+}
+
+.section1 {
+  display: flex;
+}
+
+.section2 div,
+.section3 div {
+  border-radius: 10px;
+  padding: 1em;
+  background-color: #9394c7;
+}
+
+.section2 h3,
+.section3 h3 {
+  margin-top: 0;
+  border-bottom: 2px solid black;
+}
+
+.image {
+  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.image img {
+  border-radius: 10px;
+}
+
+.description {
+  flex: 3;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description :nth-child(1) {
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+}
+
+.summary {
+  font-weight: 600;
+  margin: 0;
+}
+
+.section2,
+.section3 {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1em;
+  border-bottom: 2px solid black;
+  width: 90%;
+}
+
+.section2 p,
+.section3 p {
+  margin: 5px;
+  font-weight: 600;
+}
+
+.imdb {
+  display: flex;
+  justify-content: center;
+  padding: 3em;
+}
+
+a {
+  display: flex;
+  justify-content: center;
+}
+
+.imdb img {
+  width: 40%;
+  border-radius: 10px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.genres,
+.language,
+.rating,
+.ended,
+.premiered,
+.runtime,
+.status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fillerImage {
+  width: 80%;
+  height: 236px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7677d6;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .section1 {
+    display: block;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+}

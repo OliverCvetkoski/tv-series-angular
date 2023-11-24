@@ -1,36 +1,41 @@
 <div class="card">
-  <div class="title">
-    <h4>
-      {{ series.name | slice : 0 : 18
-      }}{{ series.name.length > 18 ? "..." : "" }}
-    </h4>
-  </div>
-  <div class="image">
-    <img
-      [src]="series.image.medium"
-      alt="{{ series.name }}"
-      *ngIf="series.image; else fillerImg"
-    />
-  </div>
-  <ng-template #fillerImg>
-    <div class="fillerImg">
-      No image found for
-      <br />
-      {{ series.name }}
+  <a [routerLink]="['/show', show.id, show.name]"
+    ><div class="title">
+      <h4>
+        {{ show.name | slice : 0 : 18 }}{{ show.name.length > 18 ? "..." : "" }}
+      </h4>
     </div>
-  </ng-template>
-  <div class="rating">
-    <p>
-      &#11088;
-      {{
-        series.rating && series.rating.average !== null
-          ? series.rating.average
-          : "No rating available"
-      }}
-    </p>
-  </div>
+    <div class="image">
+      <img
+        [src]="show.image.medium"
+        alt="{{ show.name }}"
+        *ngIf="show.image; else fillerImg"
+      />
+    </div>
+    <ng-template #fillerImg>
+      <div class="fillerImg">
+        No image found for
+        <br />
+        {{ show.name }}
+      </div>
+    </ng-template>
+    <div class="rating">
+      <p>
+        &#11088;
+        {{
+          show.rating && show.rating.average !== null
+            ? show.rating.average
+            : "No rating available"
+        }}
+      </p>
+    </div>
+  </a>
   <div class="btnDiv">
-    <button class="btn" (click)="onButtonClick()" [disabled]="isButtonDisabled">
+    <button
+      class="btn"
+      (click)="onButtonClick(show, show.id)"
+      [disabled]="isButtonDisabled"
+    >
       {{ buttonText }}
     </button>
   </div>

@@ -1,26 +1,38 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+
 import { Series } from 'src/app/services/SeriesService.service';
-import { WatchlistService } from 'src/app/services/WatchlistService.service';
+import { WatchlistState } from 'src/app/watchlist.reducer';
 
 @Component({
   selector: 'app-watchlist',
   templateUrl: './watchlist.component.html',
   styleUrls: ['./watchlist.component.css'],
 })
-export class WatchlistComponent implements OnInit {
-  watchlistResults: Series[] = [];
+export class WatchlistComponent implements OnInit, OnDestroy {
+  watchlistResults: Series[];
   isLoading = false;
+  watchlist$: Observable<Series[]>;
+  watchlistSubscription: Subscription;
 
-  constructor(private watchlistService: WatchlistService) {}
+  constructor(private store: Store) {
+    this.watchlist$ = this.store.pipe(
+      select(
+        (state: { watchlist: WatchlistState }) =>
+          (this.watchlistResults = state.watchlist.shows)
+      )
+    );
+  }
 
   ngOnInit(): void {
-    this.isLoading = !this.isLoading;
+    this.watchlistSubscription = this.watchlist$.subscribe((result) => {
+      this.watchlistResults = result;
+    });
+    console.log(this.watchlistResults);
+  }
 
-    const storedData = localStorage.getItem('watchlistResults');
-    if (storedData) {
-      this.watchlistResults = JSON.parse(storedData);
-      this.isLoading = !this.isLoading;
-    }
+  ngOnDestroy(): void {
+    this.watchlistSubscription.unsubscribe();
   }
 }

@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { SeriesService, Series } from '../../services/SeriesService.service';
-import { WatchlistService } from 'src/app/services/WatchlistService.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-browse-series',
   templateUrl: './browse-series.component.html',
   styleUrls: ['./browse-series.component.css'],
 })
-export class BrowseSeriesComponent {
+export class BrowseSeriesComponent implements OnInit {
   constructor(
     private seriesService: SeriesService,
-    private watchlistService: WatchlistService
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   searchQuery: string = '';
@@ -19,18 +21,35 @@ export class BrowseSeriesComponent {
   hasError = false;
 
   showResults() {
-    this.isLoading = !this.isLoading;
+    this.isLoading = true;
     this.seriesService
       .searchSeries(this.searchQuery)
       .subscribe((data: Series[]) => {
         this.searchResults = data;
-        this.isLoading = !this.isLoading;
+        this.isLoading = false;
         this.hasError = this.searchResults.length === 0;
-        console.log(this.searchResults);
+
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: { q: this.searchQuery },
+          queryParamsHandling: 'merge',
+        });
       });
   }
 
-  addToWatchlist(series): void {
-    this.watchlistService.addToWatchlist(series);
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const query = params['q'];
+      if (query) {
+        this.isLoading = true;
+        this.seriesService.searchSeries(query).subscribe((data: Series[]) => {
+          this.searchResults = data;
+          this.isLoading = false;
+          this.hasError = this.searchResults.length === 0;
+        });
+      } else {
+        this.searchResults = [];
+      }
+    });
   }
 }

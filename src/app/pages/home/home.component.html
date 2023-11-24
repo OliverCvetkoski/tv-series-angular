@@ -4,9 +4,9 @@
 </div>
 <div class="container">
   <app-series-component
-    *ngFor="let series of seriesData"
-    [series]="series"
+    *ngFor="let show of seriesData"
     [isRemoveButton]="false"
+    [show]="show"
   ></app-series-component>
 </div>
 <div class="loadDiv" *ngIf="initialResults <= 240; else noResults">

@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="card">
+    <div class="section1">
+      <div class="image">
+        <h2>{{ showDetails?.name }}</h2>
+        <img
+          src="{{ showDetails?.image?.medium }}"
+          alt="showDetails.name"
+          *ngIf="showDetails?.image; else fillerImage"
+        />
+      </div>
+      <ng-template #fillerImage>
+        <div class="fillerImage">
+          No image found for
+          <br />
+          {{ showDetails?.name }}
+        </div>
+      </ng-template>
+      <div class="description">
+        <h3>Short summary</h3>
+        <p *ngIf="sanitizedDescription === null; else noSummary">
+          {{ sanitizedDescription }}
+        </p>
+        <ng-template #noSummary>No summary available</ng-template>
+      </div>
+    </div>
+    <div class="section2">
+      <div class="rating">
+        <h3>Rating</h3>
+        <p>
+          {{
+            showDetails?.rating && showDetails?.rating?.average !== null
+              ? showDetails?.rating?.average
+              : "No rating available"
+          }}
+          ⭐
+        </p>
+      </div>
+      <div class="genres">
+        <h3>Genres</h3>
+        <ng-container
+          *ngIf="
+            showDetails?.genres && showDetails.genres.length > 0;
+            else noGenres
+          "
+        >
+          <p *ngFor="let genre of showDetails.genres">{{ genre }}</p>
+        </ng-container>
+        <ng-template #noGenres><p>No genres found</p></ng-template>
+      </div>
+      <div class="language" *ngIf="showDetails?.language">
+        <h3>Language</h3>
+        <p>{{ showDetails?.language }}</p>
+      </div>
+    </div>
+    <div class="section3">
+      <div class="status">
+        <h3>Status</h3>
+        <p>{{ showDetails?.status }}</p>
+      </div>
+      <div class="runtime" *ngIf="showDetails?.runtime">
+        <h3>Runtime</h3>
+        <p>{{ showDetails?.runtime }} minutes</p>
+      </div>
+      <div class="premiered" *ngIf="showDetails?.premiered">
+        <h3>Premiered on</h3>
+        <p>{{ showDetails?.premiered }}</p>
+      </div>
+      <div class="ended" *ngIf="showDetails?.ended">
+        <h3>Ended on</h3>
+        <p>{{ showDetails?.ended }}</p>
+      </div>
+    </div>
+
+    <div class="imdb">
+      <a
+        [href]="
+          'https://www.imdb.com/title/' + (showDetails?.externals.imdb || '')
+        "
+        ><img src="../../../assets/images/IMDb_Logo.svg" alt="imdb logo"
+      /></a>
+    </div>
+  </div>
+</div>
