@@ -12,7 +12,7 @@ export class ShowDetailsComponent implements OnInit {
   showId: number;
   showName: string;
   showDetails: Show;
-  sanitizedDescription: string;
+  sanitizedDescription: string | null;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,11 +26,15 @@ export class ShowDetailsComponent implements OnInit {
       this.seriesService
         .getShowDetails(this.showId)
         .subscribe((details: Show) => {
-          this.showDetails = details;
           console.log(details);
-          this.sanitizedDescription = this.stripHtmlTags(
-            this.showDetails?.summary
-          );
+          this.showDetails = details;
+          if (details.summary === null) {
+            this.sanitizedDescription = 'No summary available.';
+          } else {
+            this.sanitizedDescription = this.stripHtmlTags(
+              this.showDetails?.summary
+            );
+          }
         });
     });
   }

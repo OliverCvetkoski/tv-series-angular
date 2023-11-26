@@ -1,10 +1,9 @@
 .container {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  padding: 2em 2em 7em 2em;
   gap: 2em;
-  padding: 2em;
-  justify-items: center;
 }
 
 .loading {
@@ -22,4 +21,21 @@
 .emptyWatchlist {
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1em 2px 7em 2px;
+    gap: 0.5em;
+  }
+
+  .card {
+    width: 30%;
+  }
+}
+
+@media (max-width: 550px) {
+  .card {
+    width: 45%;
+  }
 }

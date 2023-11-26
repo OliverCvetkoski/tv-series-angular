@@ -20,6 +20,9 @@ import { SeriesComponentComponent } from './components/series-component/series-c
 import { watchlistReducer } from './watchlist.reducer';
 import { EmptyWatchlistComponent } from './components/empty-watchlist/empty-watchlist.component';
 import { ShowDetailsComponent } from './components/show-details/show-details.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SeriesService } from './services/SeriesService.service';
+import { NotificationService } from './services/notificationService.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { ShowDetailsComponent } from './components/show-details/show-details.com
     SeriesComponentComponent,
     EmptyWatchlistComponent,
     ShowDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,7 @@ import { ShowDetailsComponent } from './components/show-details/show-details.com
     BrowserAnimationsModule,
     StoreModule.forRoot({ watchlist: watchlistReducer }),
   ],
-  providers: [],
+  providers: [SeriesService, NotificationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

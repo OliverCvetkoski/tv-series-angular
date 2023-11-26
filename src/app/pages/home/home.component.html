@@ -7,16 +7,17 @@
     *ngFor="let show of seriesData"
     [isRemoveButton]="false"
     [show]="show"
+    class="card"
   ></app-series-component>
-</div>
-<div class="loadDiv" *ngIf="initialResults <= 240; else noResults">
-  <button (click)="loadData()">Load More</button>
-</div>
-<ng-template #noResults>
-  <div class="endOfResults">
-    <p>No more results to load</p>
+  <div class="buttonsDiv">
+    <div class="loadMore" *ngIf="initialResults <= 240; else noResults">
+      <button (click)="loadData()">Load More</button>
+    </div>
+    <div class="scrollToTop"><button (click)="scrollToTop()">TOP</button></div>
   </div>
-</ng-template>
-<div class="scrollTop">
-  <button (click)="scrollToTop()">TOP</button>
+  <ng-template #noResults>
+    <div class="endOfResults">
+      <p>No more results to load</p>
+    </div>
+  </ng-template>
 </div>

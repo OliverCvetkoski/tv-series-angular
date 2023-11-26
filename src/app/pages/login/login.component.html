@@ -1,0 +1,42 @@
+<div *ngIf="error" class="error">
+  <p>{{ error }}</p>
+</div>
+<div class="container">
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <div class="inputs">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="email"
+        ngModel
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="password"
+        minlength="6"
+        ngModel
+        required
+      />
+    </div>
+
+    <section>
+      <p>
+        {{
+          isLoginMode ? "Dont have an account ?" : "Already have an account ?"
+        }}
+      </p>
+      <div class="buttons">
+        <button type="button" (click)="onSwitchMode()">
+          {{ isLoginMode ? "Switch to Sign Up" : "Switch to Login " }}
+        </button>
+        <button [disabled]="!authForm.valid" type="submit">
+          {{ isLoginMode ? "Login" : "Sign Up" }}
+        </button>
+      </div>
+    </section>
+  </form>
+</div>

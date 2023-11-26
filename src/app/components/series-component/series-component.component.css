@@ -1,12 +1,3 @@
-.container {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 2em;
-  padding: 2em;
-  justify-items: center;
-}
-
 a {
   text-decoration: none;
   color: black;
@@ -16,11 +7,11 @@ a {
   border-radius: 10px;
   transition: transform 0.2s;
   background-color: #8e8ffa;
-  width: 210px;
-}
+  width: 100%;
 
-.card:hover {
-  transform: scale(1.13);
+  &:hover {
+    transform: scale(1.13);
+  }
 }
 
 .title {
@@ -32,6 +23,9 @@ a {
 h4 {
   padding: 0;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .image {
@@ -53,11 +47,15 @@ img {
   padding-top: 10px;
 }
 
+.rating p {
+  margin: 5px;
+}
+
 .btnDiv {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding-bottom: 10px;
 }
 
 .btn {
@@ -68,16 +66,15 @@ img {
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
-}
 
-.btn:hover {
-  box-shadow: 0 0 10px 3px white;
-  color: white;
+  &:hover {
+    box-shadow: 0 0 10px 3px white;
+    color: white;
+  }
 }
 
 .fillerImg {
   width: 80%;
-  height: 236px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,12 +82,17 @@ img {
   border-radius: 10px;
 }
 
-@media (max-width: 515px) {
-  .card {
-    width: 300px;
+@media (max-width: 768px) {
+  .btn {
+    font-size: 13px;
   }
 
-  .fillerImg {
-    height: 337px;
+  .btn:hover {
+    box-shadow: none;
+    color: black;
+  }
+
+  .card:hover {
+    transform: none;
   }
 }

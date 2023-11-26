@@ -6,19 +6,22 @@ export interface WatchlistState {
   shows: Series[];
 }
 
-export const initialState: WatchlistState = {
-  shows: [],
+const initialState = {
+  shows: JSON.parse(localStorage.getItem('watchlist')) || [],
 };
 
 export const watchlistReducer = createReducer(
   initialState,
   on(WatchlistActions.addToWatchlist, (state, { show }) => {
-    return { ...state, shows: [...state.shows, show] };
+    const updatedWatchlist = [...state.shows, show];
+    localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
+    return { ...state, shows: updatedWatchlist };
   }),
   on(WatchlistActions.removeFromWatchlist, (state, { showId }) => {
-    return {
-      ...state,
-      shows: state.shows.filter((show) => show.id !== showId),
-    };
+    const updatedWatchlist = state.shows.filter(
+      (show: Series) => show.id !== showId
+    );
+    localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
+    return { ...state, shows: updatedWatchlist };
   })
 );

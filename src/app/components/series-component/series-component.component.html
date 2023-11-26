@@ -21,22 +21,21 @@
     </ng-template>
     <div class="rating">
       <p>
-        &#11088;
         {{
           show.rating && show.rating.average !== null
-            ? show.rating.average
+            ? "Rating " + show.rating.average + " ⭐"
             : "No rating available"
         }}
       </p>
     </div>
   </a>
-  <div class="btnDiv">
+  <div class="btnDiv" *ngIf="isAuthenticated">
     <button
       class="btn"
       (click)="onButtonClick(show, show.id)"
       [disabled]="isButtonDisabled"
     >
-      {{ buttonText }}
+      {{ isButtonDisabled ? "Already in Watchlist" : buttonText }}
     </button>
   </div>
 </div>

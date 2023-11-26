@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 4em;
 }
 
 .card {
@@ -17,6 +18,9 @@
 
 .section1 {
   display: flex;
+  border-bottom: 2px solid black;
+  padding: 1em;
+  width: 90%;
 }
 
 .section2 div,
@@ -26,16 +30,19 @@
   background-color: #9394c7;
 }
 
-.section2 h3,
-.section3 h3 {
+h2 {
   margin-top: 0;
   border-bottom: 2px solid black;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
 }
 
 .image {
   padding: 0.5em;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   flex: 1;
 }
@@ -45,17 +52,12 @@
 }
 
 .description {
-  flex: 3;
+  flex: auto;
   padding: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.description :nth-child(1) {
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
 .summary {
@@ -69,11 +71,11 @@
   justify-content: space-evenly;
   padding: 1em;
   border-bottom: 2px solid black;
+  align-items: flex-start;
   width: 90%;
 }
 
-.section2 p,
-.section3 p {
+p {
   margin: 5px;
   font-weight: 600;
 }
@@ -92,15 +94,6 @@ a {
 .imdb img {
   width: 40%;
   border-radius: 10px;
-}
-
-h2 {
-  display: flex;
-  justify-content: center;
-}
-
-h3 {
-  font-size: 20px;
 }
 
 .genres,
@@ -126,12 +119,32 @@ h3 {
 }
 
 @media (max-width: 768px) {
+  .card {
+    width: 100%;
+    border-radius: 0;
+  }
+
   .section1 {
     display: block;
   }
 
-  h2 {
-    display: flex;
-    justify-content: center;
+  .image {
+    padding: 1em;
+  }
+
+  .section2,
+  .section3 {
+    flex-direction: column;
+    gap: 1em;
+    align-items: normal;
+  }
+
+  .description {
+    background-color: #9394c7;
+    border-radius: 10px;
+  }
+
+  img {
+    width: 70%;
   }
 }

@@ -29,7 +29,6 @@ export class WatchlistComponent implements OnInit, OnDestroy {
     this.watchlistSubscription = this.watchlist$.subscribe((result) => {
       this.watchlistResults = result;
     });
-    console.log(this.watchlistResults);
   }
 
   ngOnDestroy(): void {

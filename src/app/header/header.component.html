@@ -10,10 +10,17 @@
   </label>
   <nav class="menu">
     <ul>
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/browse">Browse Series</a></li>
-      <li><a routerLink="/watchlist">Watchlist</a></li>
-      <li><a href="#">Login</a></li>
+      <li><a routerLink="/" (click)="closeMenu()">Home</a></li>
+      <li><a routerLink="/browse" (click)="closeMenu()">Browse Series</a></li>
+      <li *ngIf="isAuthenticated">
+        <a routerLink="/watchlist" (click)="closeMenu()">Watchlist</a>
+      </li>
+      <li *ngIf="!isAuthenticated">
+        <a routerLink="/login" (click)="closeMenu()">Login</a>
+      </li>
+      <li *ngIf="isAuthenticated">
+        <a (click)="onLogout()">Logout</a>
+      </li>
     </ul>
   </nav>
 </header>
