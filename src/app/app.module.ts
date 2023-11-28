@@ -23,6 +23,7 @@ import { ShowDetailsComponent } from './components/show-details/show-details.com
 import { LoginComponent } from './pages/login/login.component';
 import { SeriesService } from './services/SeriesService.service';
 import { NotificationService } from './services/notificationService.service';
+import { SortElementsComponent } from './components/sort-elements/sort-elements.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NotificationService } from './services/notificationService.service';
     EmptyWatchlistComponent,
     ShowDetailsComponent,
     LoginComponent,
+    SortElementsComponent,
   ],
   imports: [
     BrowserModule,

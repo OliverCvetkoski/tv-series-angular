@@ -1,0 +1,23 @@
+.sort {
+  width: 95%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+  font-weight: 700;
+  padding-top: 1em;
+}
+
+select {
+  padding: 7px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  background-color: #bdbefd;
+}
+
+div p {
+  display: flex;
+  justify-content: center;
+}

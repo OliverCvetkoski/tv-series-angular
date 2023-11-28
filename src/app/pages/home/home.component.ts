@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { SeriesService, Series } from '../../services/SeriesService.service';
@@ -11,16 +11,12 @@ import { SeriesService, Series } from '../../services/SeriesService.service';
 export class HomeComponent implements OnInit, OnDestroy {
   dataSubscription: Subscription;
   seriesData: Series[] = [];
-  batchSize = 20;
-  currentPage = 1;
+  batchSize = 35;
   loading = false;
-  initialResults = 20;
+  currentBatch = 0;
+  totalSeriesData: Series[] = [];
 
   constructor(private seriesService: SeriesService) {}
-
-  ngOnInit(): void {
-    this.loadData();
-  }
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -30,13 +26,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.dataSubscription = this.seriesService.getAllData().subscribe(
       (data: Series[]) => {
-        const startIndex = (this.currentPage - 1) * this.batchSize;
-        const endIndex = startIndex + this.batchSize;
-        const newData = data.slice(startIndex, endIndex);
-
-        this.seriesData = this.seriesData.concat(newData);
-        this.currentPage++;
-        this.initialResults += 20;
+        this.totalSeriesData = data;
+        this.appendNextBatch();
         this.loading = false;
       },
       (error) => {
@@ -44,6 +35,45 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.loading = true;
       }
     );
+  }
+
+  appendNextBatch(): void {
+    const start = this.currentBatch * this.batchSize;
+    const end = (this.currentBatch + 1) * this.batchSize;
+    const newData = this.totalSeriesData.slice(start, end);
+    this.seriesData = this.seriesData.concat(newData);
+    this.currentBatch++;
+    console.log(this.seriesData);
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const documentHeight = document.body.scrollHeight;
+
+    if (
+      scrollPosition >= documentHeight - 200 &&
+      !this.loading &&
+      this.seriesData.length < this.totalSeriesData.length
+    ) {
+      this.appendNextBatch();
+    }
+  }
+
+  sortByRating() {
+    this.seriesData.sort((a, b) => b.rating.average - a.rating.average);
+  }
+
+  sortByNameDescending() {
+    this.seriesData.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  sortByNameAscending() {
+    this.seriesData.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  ngOnInit(): void {
+    this.loadData();
   }
 
   ngOnDestroy(): void {

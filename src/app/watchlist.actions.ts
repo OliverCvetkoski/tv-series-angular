@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { Series } from './services/SeriesService.service';
 
 export const addToWatchlist = createAction(

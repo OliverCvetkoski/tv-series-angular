@@ -11,6 +11,7 @@
     <button type="submit">Search</button>
   </div>
 </form>
+<div><app-sort-elements [series]="searchResults"></app-sort-elements></div>
 <div class="loading" *ngIf="isLoading">
   <app-loading-spinner></app-loading-spinner>
 </div>

@@ -1,34 +1,33 @@
 <div class="card">
-  <a [routerLink]="['/show', show.id, show.name]"
-    ><div class="title">
-      <h4>
-        {{ show.name | slice : 0 : 18 }}{{ show.name.length > 18 ? "..." : "" }}
-      </h4>
-    </div>
+  <div class="title">
+    <h4>
+      {{ show.name | slice : 0 : 18 }}{{ show.name.length > 18 ? "..." : "" }}
+    </h4>
+  </div>
+  <a [routerLink]="['/show', show.id, show.name]">
     <div class="image">
       <img
         [src]="show.image.medium"
         alt="{{ show.name }}"
         *ngIf="show.image; else fillerImg"
-      />
+      /></div
+  ></a>
+  <ng-template #fillerImg>
+    <div class="fillerImg">
+      No image found for
+      <br />
+      {{ show.name }}
     </div>
-    <ng-template #fillerImg>
-      <div class="fillerImg">
-        No image found for
-        <br />
-        {{ show.name }}
-      </div>
-    </ng-template>
-    <div class="rating">
-      <p>
-        {{
-          show.rating && show.rating.average !== null
-            ? "Rating " + show.rating.average + " ⭐"
-            : "No rating available"
-        }}
-      </p>
-    </div>
-  </a>
+  </ng-template>
+  <div class="rating">
+    <p>
+      {{
+        show.rating && show.rating.average !== null
+          ? "Rating " + show.rating.average + " ⭐"
+          : "No rating available"
+      }}
+    </p>
+  </div>
   <div class="btnDiv" *ngIf="isAuthenticated">
     <button
       class="btn"

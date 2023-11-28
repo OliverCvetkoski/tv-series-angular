@@ -2,6 +2,7 @@
   <app-loading-spinner></app-loading-spinner>
   <p>Loading Results...</p>
 </div>
+<app-sort-elements [series]="seriesData"></app-sort-elements>
 <div class="container">
   <app-series-component
     *ngFor="let show of seriesData"
@@ -9,15 +10,8 @@
     [show]="show"
     class="card"
   ></app-series-component>
-  <div class="buttonsDiv">
-    <div class="loadMore" *ngIf="initialResults <= 240; else noResults">
-      <button (click)="loadData()">Load More</button>
-    </div>
-    <div class="scrollToTop"><button (click)="scrollToTop()">TOP</button></div>
+  <div class="noMoreResults" *ngIf="seriesData.length === 240">
+    <p>No more results</p>
   </div>
-  <ng-template #noResults>
-    <div class="endOfResults">
-      <p>No more results to load</p>
-    </div>
-  </ng-template>
+  <div class="scrollToTop"><button (click)="scrollToTop()">TOP</button></div>
 </div>

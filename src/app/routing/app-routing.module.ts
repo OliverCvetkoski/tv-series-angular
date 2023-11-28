@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  ExtraOptions,
+  RouterModule,
+  Routes,
+  withInMemoryScrolling,
+} from '@angular/router';
 
 import { HomeComponent } from '../pages/home/home.component';
 import { BrowseSeriesComponent } from '../pages/browse-series/browse-series.component';
@@ -9,7 +14,7 @@ import { LoginComponent } from '../pages/login/login.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'browse', component: BrowseSeriesComponent },
   {
     path: 'watchlist',
@@ -21,7 +26,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

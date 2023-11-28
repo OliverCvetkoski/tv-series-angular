@@ -18,21 +18,20 @@
   bottom: -4em;
 }
 
-.loadMore {
-  width: 100%;
+.scrollToTop {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
-.loadMore button {
-  background-color: #663ff7;
-  font-weight: 700;
-  border: none;
-  padding: 15px;
-  color: black;
+.scrollToTop button {
+  padding: 10px;
   border-radius: 10px;
+  border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  background-color: #4602c4;
 
   &:hover {
     box-shadow: 0 0 10px 6px white;
@@ -40,22 +39,20 @@
   }
 }
 
-.endOfResults {
+.noMoreResults {
   display: flex;
   justify-content: center;
 }
 
-.endOfResults p {
+.noMoreResults p {
+  padding: 10px;
   border-radius: 10px;
-  padding: 20px;
-  margin: 0;
-  background-color: #7752fe;
   font-weight: 700;
   background-image: linear-gradient(
     to right,
-    #9c82fc 0%,
-    #7752fe 51%,
-    #5b2ffa 100%
+    #62c9f9 0%,
+    #1c2ef4 51%,
+    #14026d 100%
   );
   background-size: 200% 100%;
   animation: gradient-loading 2s ease-in-out infinite;
@@ -75,41 +72,10 @@
   }
 }
 
-.buttonsDiv {
-  display: flex;
-  width: 100%;
-  gap: 1em;
-  flex-direction: column;
-}
-
-.scrollToTop {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.scrollToTop button {
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  color: black;
-  background-color: #4602c4;
-
-  &:hover {
-    box-shadow: 0 0 10px 6px white;
-    color: white;
-  }
-}
-
 @media (max-width: 768px) {
   .container {
     padding: 1em 2px 7em 2px;
     gap: 0.5em;
-  }
-
-  .buttonsDiv {
-    padding-top: 1em;
   }
 
   .scrollToTop {

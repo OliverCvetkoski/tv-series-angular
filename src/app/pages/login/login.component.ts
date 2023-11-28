@@ -51,8 +51,6 @@ export class LoginComponent {
     });
     form.reset();
     setTimeout(() => {
-      const error = document.querySelector('.error') as HTMLDivElement;
-      error.style.opacity = '0';
       this.error = '';
     }, 2000);
   }

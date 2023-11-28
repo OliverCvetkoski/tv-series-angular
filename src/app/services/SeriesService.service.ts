@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+
 import { Show } from '../interfaces';
 
 export interface Series {
   id: number;
   name: string;
+  genres: string[];
   image: { medium: string; original: string };
   rating: { average: number };
 }
@@ -35,8 +37,8 @@ export class SeriesService {
       .pipe(
         map((data: SearchSeries[]) => {
           return data.map((item: SearchSeries) => {
-            const { id, name, image, rating } = item.show;
-            return { id, name, image, rating };
+            const { id, name, image, rating, genres } = item.show;
+            return { id, name, image, rating, genres };
           });
         })
       );

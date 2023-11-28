@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+
 import * as WatchlistActions from './watchlist.actions';
 import { Series } from './services/SeriesService.service';
 

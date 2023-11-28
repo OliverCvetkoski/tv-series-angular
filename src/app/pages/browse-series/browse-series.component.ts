@@ -35,6 +35,7 @@ export class BrowseSeriesComponent implements OnInit {
           queryParamsHandling: 'merge',
         });
       });
+    console.log(this.searchResults);
   }
 
   ngOnInit(): void {

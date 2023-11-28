@@ -58,6 +58,18 @@ input {
   justify-content: center;
 }
 
+.sort {
+  width: 95%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1em;
+}
+
+.sort p {
+  width: fit-content;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1em 2px 7em 2px;

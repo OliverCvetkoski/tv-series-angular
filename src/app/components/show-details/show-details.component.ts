@@ -26,7 +26,6 @@ export class ShowDetailsComponent implements OnInit {
       this.seriesService
         .getShowDetails(this.showId)
         .subscribe((details: Show) => {
-          console.log(details);
           this.showDetails = details;
           if (details.summary === null) {
             this.sanitizedDescription = 'No summary available.';
