@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  HostListener,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { SeriesService, Series } from '../../services/SeriesService.service';
@@ -16,7 +22,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentBatch = 0;
   totalSeriesData: Series[] = [];
 
-  constructor(private seriesService: SeriesService) {}
+  constructor(
+    private seriesService: SeriesService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -43,7 +52,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     const newData = this.totalSeriesData.slice(start, end);
     this.seriesData = this.seriesData.concat(newData);
     this.currentBatch++;
-    console.log(this.seriesData);
   }
 
   @HostListener('window:scroll', [])

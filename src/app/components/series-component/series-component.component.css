@@ -8,6 +8,7 @@ a {
   transition: transform 0.2s;
   background-color: #8e8ffa;
   width: 100%;
+  text-align: center;
 
   &:hover {
     transform: scale(1.13);
@@ -15,8 +16,6 @@ a {
 }
 
 .title {
-  display: flex;
-  justify-content: center;
   padding: 10px;
 }
 
@@ -28,20 +27,12 @@ h4 {
   text-overflow: ellipsis;
 }
 
-.image {
-  display: flex;
-  justify-content: center;
-}
-
 img {
   width: 80%;
   border-radius: 10px;
 }
 
 .rating {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 5px;
   font-weight: 700;
   padding-top: 10px;
@@ -52,9 +43,6 @@ img {
 }
 
 .btnDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-bottom: 10px;
 }
 
@@ -75,9 +63,6 @@ img {
 
 .fillerImg {
   width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #7677d6;
   border-radius: 10px;
 }

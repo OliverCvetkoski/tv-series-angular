@@ -33,12 +33,12 @@ export class SortElementsComponent {
 
   sortByGenre(event: any) {
     const sortBy = event.target.value;
-    this.sort(this.series, sortBy);
+    this.series = this.sort(this.series, sortBy);
   }
 
-  sort(series: Series[], genre: any) {
-    const yep = series.includes(genre);
-    console.log(yep);
+  sort(series: Series[], genre: any): Series[] {
+    const filteredSeries = series.filter((s) => s.genres.includes(genre));
+    return filteredSeries;
   }
 
   sortByRating(series: Series[]) {

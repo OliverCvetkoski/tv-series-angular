@@ -5,13 +5,12 @@
     </h4>
   </div>
   <a [routerLink]="['/show', show.id, show.name]">
-    <div class="image">
-      <img
-        [src]="show.image.medium"
-        alt="{{ show.name }}"
-        *ngIf="show.image; else fillerImg"
-      /></div
-  ></a>
+    <img
+      [src]="show.image.medium"
+      alt="{{ show.name }}"
+      *ngIf="show.image; else fillerImg"
+    />
+  </a>
   <ng-template #fillerImg>
     <div class="fillerImg">
       No image found for
